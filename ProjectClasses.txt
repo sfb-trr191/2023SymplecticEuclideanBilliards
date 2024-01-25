@@ -1,0 +1,52 @@
+BezierUtils.js
+	Hilfsfunktionen rund um die Bezier-Kurven
+BilliardsBall.js
+	Bewegung eines Balls
+BilliardsBalls.js
+	Gemeinsames aller Bälle
+BilliardsStep.js
+	Ein Billard Schritt
+Charts.js
+	Hilfsfunktionen zur js-Bibliothek chart.js
+CircleArc.js
+	Kreissegment Methoden
+CompareIt.js
+	Ungefähr Vergleiche (numerische Ungenauigkeit)
+complexbase.js
+	Klasse zu komplexen Zahlen von Henrik Vestermark (hve@hvks.com)
+Configuration.js
+	Nicht-visuell änderbare Parameter
+CurvePoint.js
+	Basis für allgemeine Kurvenpunkte
+DataConversion.js
+	Konvertierung und Normierung von Polygondaten
+Drawings.js
+	Zeichnen von Polygonen, Bezier-Kurven, Trajectorien
+FileIO.js
+	Lesen und Schreiben von x-y Dateien
+Geometry2d.js
+	Elementare, zweidimensionale Hilfsfunktionen
+index.html
+	Die html5 Datei zur Visualisierung
+IntersectionPoint.js
+	Hilfdatei für Kurvenschnittpunkte
+Line.js
+	Linien
+main.js
+	Hauptprogramm, das in index.html gerufen wird
+NewtonCotes.js
+	Newton-Cotes Formeln
+Point.js
+	Der 2d Punkt
+PolygonExample.js
+	Beispiele für Polygone
+polynomialbase.js
+	Klasse zu Polynomen von Henrik Vestermark (hve@hvks.com), hier benutzt alle Nullstellen finden
+Rectangle.js
+	Rechteck Hilfsfunktionen
+Trajectories.js
+	Trajectorien-Klasse
+UndoRedo.js
+	Undo-, Redo-Operationen
+Utils.js
+	allgemeine Hilfsfunktionen für das Projekt

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Symplectic and Euclidean Billiards</title>
+	<link rel="icon" type="image/x-icon" href="./Billiards.ico">
+
+	<style>
+		.track 
+		{
+			width:100%;
+			max-width:600px;
+			max-height:600px;
+			position: relative;
+		}
+		.area
+		{
+			width:600px;
+			height:650px
+		}
+		.flex-container 
+		{
+		  display: flex;
+		  background-color: White; 
+		  flex-wrap: wrap;
+		  flex-direction: row;
+		  margin: 10px;
+		  padding: 10px;
+		  gap: 25px 10px
+		}
+		input.hidden-check { display : none }
+		
+		datalist 
+		{
+		  display: flex;
+		  flex-direction: row;
+		  justify-content: space-between;
+		  writing-mode: horizontal-tb;
+		  width: 150px;
+		}
+
+		option 
+		{
+		  padding: 0;
+		}
+
+		input[type="range"] 
+		{
+		  width: 150px;
+		  margin: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<h2>Symplectic and Euclidean Billiards</h2>
+
+	<div class="flex-container">
+		<div>
+			<table>
+				<tr>
+				<td><input type="checkbox" id="batchmode" value="0">Batch</input></td>
+					<td><label for="batchreflections" id="label_batchreflections" style="display:none"> - Reflections</label></td>
+					<td><input type="number" id="batchreflections" value="1000" min="1" max="5000" style="display:none"></td>
+				</tr>
+			</table>
+			<p>
+				<input type="checkbox" id="usesymplectic" checked value="true">Use Symplectic Billiards</input>
+			</p>
+			<p>
+				<button id="start">Start</button>
+				<button id="restart">Restart</button>
+				<button id="step">Step</button>
+			</p>
+			<p>
+				<table>
+					<tr>
+						<td><input type="checkbox" id="usebezier" value="0">Use Bezièr curve</input></td>
+						<td>
+							<input type="checkbox" id="showcontrolpoints" style="display:none" />
+							<label type="label" id="label_showcontrolpoints" style="display:none">Show control points</label>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="bezierscalefactor" id="label_bezierscalefactor" style="display:none">Beszier scale factor</label></td>
+						<td>
+							<input type="range" id="bezierscalefactor" style="display:none" value="75" min="0" max="100" step="1" list="marks">
+							<datalist id="marks">
+							  <option value="0" label="0" id="mark0" style="display:none"></option>
+							  <option value="25" label="0.25" id="mark25" style="display:none"></option>
+							  <option value="50" label="0.5" id="mark50" style="display:none"></option>
+							  <option value="75" label="0.75" id="mark75" style="display:none"></option>
+							  <option value="100" label="1" id="mark1" style="display:none"></option>
+							</datalist> 
+						</td>
+					</tr>
+				</table>
+			</p>
+			<p>
+				<table>
+					<tr>
+						<td><label for="polygontype">Polygon type</label></td>
+						<td><select name="polygontpye" id="polygontype">
+							<option value="regularpolygon">Regular Polygon</option>
+							<option value="starpolygon">Star Polygon</option>
+							<option value="circle">Circle</option>
+							<option value="ellipse">Ellipse</option>
+							<option value="sawtooth">Sawtooth</option>
+							<option value="trapezoid">Trapezoid</option>
+							<option value="crossing">Crossing</option>
+							<option value="einsteintiles">Einstein - Tile</option>
+							<option value="quad1">Quad 1</option>
+							<option value="penthouse">Penthouse</option>
+							<option value="rectangle">Rectangle</option>
+							<option value="memorydata">Memory data</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><label for="vertices">Number of vertices</label></td>
+						<td><input type="number" id="vertices" value="3" min="3" max="100"></td>
+					</tr>
+					<tr>
+						<td><label for="angle">Start angle °</label></td>
+						<td><input type="number" id="angle" value="20" min="0" max="180"></td>
+					</tr>
+					<tr>
+						<td><label for="numballs">Number of balls</label></td>
+						<td><input type="number" id="numballs" value="1" min="1" max="34"></td>
+					</tr>
+					<tr>
+						<td><label for="speed" id="label_speed">Speed control</label></td>
+						<td><input type="number" id="speed" value="3" min="1" max="10"></td>
+					</tr>
+					<tr>
+						<td><label for="trajectoriesmaxdepth" id="label_trajectoriesmaxdepth" >Trajectories</label></td>
+						<td><input type="number" id="trajectoriesmaxdepth" value="4" min="0" max="10000"></td>
+					</tr>
+					<tr>
+						<td><label for="periodlength" id="label_periodlength" >Period length</label></td>
+						<td><input type="number" id="periodlength" value="0" min="0" max="1000"> </td>
+					</tr>
+					<tr>
+						<td><label for="sagittafactor" >Trajectory curvature</label></td>
+						<td>
+						  <input type="range" min="1" max="199" value="100" id="sagittafactor" list="tickmarks">
+							<datalist id="tickmarks">
+							  <option value="1" label="-0.5"></option>
+							  <option value="50" label="-0.25" style="display:none"></option>
+							  <option value="100" label="0.0"></option>
+							  <option value="150" label="0.25" style="display:none"></option>
+							  <option value="199" label="0.5"></option>
+							</datalist>
+						</td>
+					</tr>
+				</table>
+			</p>
+			<p>
+				<button id="pickfile">Pick File</button>
+				<input type="text" id="filename"></input>
+			</p>
+			<p>
+				<button id="savefile">Save Polygon</button>
+				<button id="design">Start Design Mode</button>
+				<button id="cleardesign">Clear</button>
+			</p>
+			
+			<p>
+				<button id="undo">Undo</button>
+				<button id="redo">Redo</button>
+			</p>			
+		</div>
+
+		<div class="area" id="billiardsarea">
+			<label type="text" id="log"></label>
+			<table>
+				<tr>
+					<td> <label for="rotateangle" id="label_rotateangle" >Rotation</label> </td>
+					<td> <input type="range" min="0" max="360" value="0" id="rotateangle" style="min-width:250px"> </td>
+					<td> <label id="rotvalue">0 °</label> </td>
+				</tr>
+				<tr>
+					<td> <label for="drawingsize" id="label_drawingsize" >Size</label></td> 
+					<td> <input type="range" min="0" max="100" value="75" id="drawingsize" style="min-width:250px"></td> 
+					<td> <label id="sizesymbol">-/+</label> </td>
+				</tr>
+			</table>
+				<canvas class="track" id="billiardscanvas" > </canvas> 
+		</div>
+
+		<div class="track">
+			<canvas class="track" id="scatterchart" style="height:600px;min-height:400px;min-width:400px;max-width:600px"> </canvas> 
+		</div>
+  	</div> 
+  	
+  	<p id="log"></p>
+	<!-- chart.js -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js"></script>
+	<script src="main.js" type="module"></script>
+</body>
+</html>
